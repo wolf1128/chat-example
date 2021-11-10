@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import sockerIOClient from 'socket.io-client';
+// import sockerIOClient from '../../backend/node_modules/socket.io/client-dist/socket.io'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const ENDPOINT = 'http://127.0.0.1:5000';
+
+	React.useEffect(() => {
+		let socket = sockerIOClient(ENDPOINT, { transports: ['websocket'] });
+		socket.on('connection', () => {
+			console.log('a user connected!');
+		});
+	});
+
+	return (
+		<>
+			<ul id="message">
+				<form id="form">
+					<input id="input" autoComplete="off" />
+					<button>Send</button>
+				</form>
+			</ul>
+		</>
+	);
 }
 
 export default App;
