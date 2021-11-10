@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const http = require('http');
+import http from 'http';
 const server = http.createServer(app);
 
 app.get('/', (req, res) => {
