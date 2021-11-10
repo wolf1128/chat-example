@@ -1,0 +1,22 @@
+{
+  "name": "socket-chat-example-backend",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/professordev7/chat-example.git"
+  },
+  "author": "Salar Farahmand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/professordev7/chat-example/issues"
+  },
+  "homepage": "https://github.com/professordev7/chat-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
