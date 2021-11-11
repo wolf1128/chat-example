@@ -14,12 +14,13 @@ function App() {
 		const messages = document.getElementById('messages')!;
 
 		// STEP[2] Emitting Events (send/receive events with data)
-		socket.on('chat message', function (msg) {
+		socket.on('chat message', function (msg: string) {
 			let item = document.createElement('li');
 			item.textContent = msg;
 			messages.appendChild(item);
 			window.scrollTo(0, document.body.scrollHeight);
 		});
+
 	}, []);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

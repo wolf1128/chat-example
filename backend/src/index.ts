@@ -20,7 +20,9 @@ app.get('/', (req, res) => {
 // STEP[1] Integrating Socket.io
 io.on('connection', (socket) => {
 	console.log('a user connected');
-	socket.on('disconnect', () => { // * Special disconnect event.
+
+	socket.on('disconnect', () => {
+		// * Special disconnect event.
 		console.log('user disconnected');
 	});
 
@@ -28,9 +30,9 @@ io.on('connection', (socket) => {
 	socket.on('chat message', (msg: string) => {
 		console.log('message: ' + msg);
 		// STEP[3] Broadcasting
-		io.emit('chat message', msg); 					// Send an event to everyone (simple scenario)
+		io.emit('chat message', msg); // Send an event to everyone (simple scenario)
 		// socket.broadcast.emit('others can see this!'); 	// Send a message to everyone exxcept for a certain emitting socket. (using broadcast flag)
-	})
+	});
 });
 
 server.listen(5000, () => {
