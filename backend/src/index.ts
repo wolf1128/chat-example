@@ -10,7 +10,6 @@ var corsOptions = {
 	origin: '*',
 	exposedHeaders: 'Content-Type,context',
 };
-
 app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
@@ -18,8 +17,20 @@ app.get('/', (req, res) => {
 	// res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', () => {
+// STEP[1] Integrating Socket.io
+io.on('connection', (socket) => {
 	console.log('a user connected');
+	socket.on('disconnect', () => { // * Special disconnect event.
+		console.log('user disconnected');
+	});
+
+	// STEP[2] Emitting Events (send/receive events with data)
+	socket.on('chat message', (msg: string) => {
+		console.log('message: ' + msg);
+		// STEP[3] Broadcasting
+		io.emit('chat message', msg); 					// Send an event to everyone (simple scenario)
+		// socket.broadcast.emit('others can see this!'); 	// Send a message to everyone exxcept for a certain emitting socket. (using broadcast flag)
+	})
 });
 
 server.listen(5000, () => {
